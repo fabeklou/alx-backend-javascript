@@ -1,6 +1,6 @@
 export default function cleanSet(hashSet, prefixStr) {
-  if (prefixStr === ''
-    || hashSet.size === 0
+  if (!prefixStr
+    || !hashSet
     || !(hashSet instanceof Set)
     || typeof prefixStr !== 'string'
   ) {
@@ -8,7 +8,7 @@ export default function cleanSet(hashSet, prefixStr) {
   }
   const postfixStrs = [];
   for (const str of hashSet) {
-    if (str.startsWith(prefixStr)) {
+    if (typeof str === 'string' && str.startsWith(prefixStr)) {
       postfixStrs.push(str.slice(prefixStr.length));
     }
   }
