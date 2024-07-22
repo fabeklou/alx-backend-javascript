@@ -4,7 +4,7 @@
  * @param {string} strArg - The message to be displayed.
  */
 const displayMessage = (strArg) => {
-  process.stdout.write(`${strArg}\n`);
+  console.log(strArg);
 };
 
 module.exports = displayMessage;
