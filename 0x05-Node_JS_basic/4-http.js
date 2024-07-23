@@ -5,10 +5,10 @@ const MESSAGE = 'Hello Holberton School!';
 
 const app = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
-  res.end(MESSAGE);
+  res.write(MESSAGE);
+  res.end();
 });
 
-app.listen(PORT, () => {
-});
+app.listen(PORT);
 
 module.exports = app;
