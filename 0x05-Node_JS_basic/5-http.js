@@ -30,7 +30,7 @@ const countStudents = async (path) => {
     }
   });
 
-  res.push(`Number of students: ${students.length}\n`);
+  res.push(`Number of students: ${students.length}`);
   const fields = new Map();
 
   students.forEach((student) => {
@@ -44,7 +44,7 @@ const countStudents = async (path) => {
   });
 
   fields.forEach((studentList, fieldName) => {
-    res.push(`Number of students in ${fieldName}: ${studentList.length}. List: ${studentList.join(', ')}\n`);
+    res.push(`Number of students in ${fieldName}: ${studentList.length}. List: ${studentList.join(', ')}`);
   });
 
   return res;
@@ -57,15 +57,21 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (url === '/students' && method === 'GET') {
     const filePath = process.argv[2];
-    countStudents(filePath).then((r) => {
-      const data = r;
-      data.forEach((str, index) => {
-        data[index] = str.trim('\n');
+    countStudents(filePath).then((response) => {
+      const responseStrings = ['This is the list of our students'];
+
+      response.forEach((string) => {
+        responseStrings.push(string);
       });
-      res.end(`This is the list of our students\n${data.join('\n')}`);
+
+      res.end(responseStrings.join('\n'));
     }).catch(() => {
-      res.end('This is the list of our students');
+      const responseStrings = ['This is the list of our students',
+        'Cannot load the database'];
+      res.end(responseStrings.join('\n'));
     });
+  } else {
+    res.end('Not Found');
   }
 });
 
