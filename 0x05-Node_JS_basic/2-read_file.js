@@ -26,13 +26,13 @@ const countStudents = (path) => {
     }
   });
 
-  process.stdout.write(`Number of students: ${students.length}\n`);
+  console.log(`Number of students: ${students.length}`);
 
   const fields = new Map();
 
   students.forEach((student) => {
-    const name = student[0];
-    const field = student[3];
+    const name = student[0].trim();
+    const field = student[3].trim();
 
     if (fields.has(field)) {
       fields.get(field).push(name);
@@ -42,7 +42,7 @@ const countStudents = (path) => {
   });
 
   fields.forEach((students, field) => {
-    process.stdout.write(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`);
+    console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
   });
 };
 
