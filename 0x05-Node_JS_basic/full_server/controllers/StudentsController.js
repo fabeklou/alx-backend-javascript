@@ -21,8 +21,7 @@ class StudentsController {
       }
       response.status(200).send(responseStrings.join('\n'));
     }).catch(() => {
-      responseStrings.push('Cannot load the database');
-      response.status(500).send(responseStrings.join('\n'));
+      response.status(500).send('Cannot load the database');
     });
   }
 
